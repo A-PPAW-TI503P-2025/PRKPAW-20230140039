@@ -4,13 +4,14 @@ const app = express();
 const PORT = 3001;
 const morgan = require("morgan");
 
+// ...
 // Impor router
 const presensiRoutes = require("./routes/presensi");
 const reportRoutes = require("./routes/reports");
 
-// impor auth 
+// <-- TAMBAHKAN BARIS INI
 const authRoutes = require('./routes/auth');
-
+// ...
 
 // Middleware
 app.use(cors());
