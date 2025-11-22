@@ -2,7 +2,7 @@ import React from 'react';
 
 const DashboardPage = () => {
     const token = localStorage.getItem('token');
-    const userName = 'Mahasiswa Awal'; 
+    const userName = 'Fahrezi Ahmad Syahyana'; // Ganti dengan data dinamis jika ada
 
     const handleLogout = () => {
         localStorage.removeItem('token');
