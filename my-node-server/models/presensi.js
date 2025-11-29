@@ -10,7 +10,11 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      // ✅ IMPLEMENTASI RELASI MANY-TO-ONE (Presensi.belongsTo(User))
+      Presensi.belongsTo(models.User, {
+        foreignKey: 'userId', // Ini adalah kolom kunci asing di tabel Presensi
+        as: 'user'           // Alias yang akan digunakan saat melakukan eager loading
+      }); 
     }
   }
   Presensi.init({
@@ -18,10 +22,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    // ❌ KOLOM NAMA DIHAPUS sesuai requirements ujian
+    /*
     nama: {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    */
     checkIn: {
       type: DataTypes.DATE,
       allowNull: false,

@@ -10,8 +10,11 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // Definisikan relasi di sini jika ada
-      // Contoh: User.hasMany(models.Presensi, { foreignKey: 'userId' });
+      // ✅ IMPLEMENTASI RELASI ONE-TO-MANY (User.hasMany(Presensi))
+      User.hasMany(models.Presensi, { 
+        foreignKey: 'userId', // Ini adalah kolom kunci asing di tabel Presensi [cite: 495]
+        as: 'presensi'       // Alias yang digunakan saat melakukan eager loading [cite: 496]
+      }); 
     }
   }
   User.init({
@@ -45,4 +48,3 @@ module.exports = (sequelize, DataTypes) => {
   });
   return User;
 };
-
