@@ -4,7 +4,7 @@ const presensiController = require('../controllers/presensiController');
 const { addUserData } = require('../middleware/permissionMiddleware');
 router.use(addUserData);
 const { body, validationResult } = require('express-validator');
-
+router.delete("/:id", presensiController.deletePresensi);
 router.use(addUserData);
 
 router.post('/check-in', presensiController.CheckIn);

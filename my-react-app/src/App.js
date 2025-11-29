@@ -1,48 +1,57 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; 
-// Hapus 'Link' dari import karena sudah ada di Navbar.js
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import LoginPage from "./components/LoginPage";
+import RegisterPage from "./components/RegisterPage";
+import DashboardPage from "./components/DashboardPage";
+import AttendancePage from "./components/AttendancePage";
+import ReportPage from "./components/ReportPage";
+import Navbar from "./components/NavbarTemp";
+import "leaflet/dist/leaflet.css";
 
-// Import Halaman Utama
-import LoginPage from './LoginPage';
-import RegisterPage from './RegisterPage';
-import DashboardPage from './DashboardPage';
-
-// Import Component Baru
-import Navbar from './components/Navbar';           // <-- WAJIB IMPORT
-import AttendancePage from './components/PresensiPage'; // <-- WAJIB IMPORT
-import ReportPage from './components/ReportPage';     // <-- WAJIB IMPORT
-
-const App = () => {
-    // Hapus variabel navStyle dan linkStyle yang lama
-
-    return (
-        <Router>
-            
-            {/* ⬅️ INI ADALAH TEMPAT BARU UNTUK NAVIGASI */}
-            {/* Navbar diletakkan di SINI: Di dalam Router, di luar Routes.    */}
-            <Navbar /> 
-            
-            <div className="content-area">
-                <Routes>
-                    {/* Route Default: Biasanya diarahkan ke Dashboard/Login */}
-                    <Route path="/" element={<DashboardPage />} />
-                    
-                    {/* Routes Autentikasi */}
-                    <Route path="/login" element={<LoginPage />} />
-                    <Route path="/register" element={<RegisterPage />} />
-                    
-                    {/* Routes Aplikasi Utama */}
-                    <Route path="/dashboard" element={<DashboardPage />} />
-                    
-                    {/* Route untuk Presensi (Check-In & Check-Out) */}
-                    <Route path="/presensi" element={<AttendancePage />} /> 
-
-                    {/* Route untuk Laporan (Khusus Admin) */}
-                    <Route path="/reports" element={<ReportPage />} /> 
-                </Routes>
-            </div>
-        </Router>
-    );
+const MainLayout = ({ children }) => {
+  return (
+    <div>
+      <Navbar />
+      <main>{children}</main>
+    </div>
+  );
 };
 
+function App() {
+  return (
+    <Router>
+      <div>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route
+            path="/dashboard"
+            element={
+              <MainLayout>
+                <DashboardPage />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/attendance"
+            element={
+              <MainLayout>
+                <AttendancePage />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/reports"
+            element={
+              <MainLayout>
+                <ReportPage />
+              </MainLayout>
+            }
+          />
+          <Route path="/" element={<LoginPage />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+}
 export default App;

@@ -11,18 +11,23 @@ module.exports = {
       },
       userId: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        // ✅ KONFIGURASI FOREIGN KEY KE TABEL 'Users'
+        references: {
+          model: 'Users', // Merujuk ke tabel Users [cite: 506]
+          key: 'id',      // Merujuk ke kolom id di tabel Users [cite: 506]
+        },
+        onUpdate: 'CASCADE', // Opsi untuk relasi saat update [cite: 506]
+        onDelete: 'CASCADE', // Opsi untuk relasi saat delete [cite: 506]
       },
-      nama: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
+      // ❌ KOLOM 'nama' DIHAPUS (karena diambil melalui relasi)
+      
       checkIn: {
         allowNull: false,
         type: Sequelize.DATE
       },
       checkOut: {
-        allowNull: true, // checkOut bisa kosong saat pertama kali check-in
+        allowNull: true, 
         type: Sequelize.DATE
       },
       createdAt: {
@@ -39,5 +44,3 @@ module.exports = {
     await queryInterface.dropTable('Presensis');
   }
 };
-
-
