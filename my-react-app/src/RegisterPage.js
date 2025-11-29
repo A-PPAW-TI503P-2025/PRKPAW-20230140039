@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // <--- TAMBAHKAN INI
 
 const RegisterPage = () => {
-    // State dan fungsi handleSubmit sama seperti sebelumnya...
     const [nama, setNama] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -11,7 +11,6 @@ const RegisterPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setMessage('Sedang mendaftarkan...');
-        // ... Logika Fetch API sama seperti sebelumnya (POST /api/auth/register) ...
         try {
             const response = await fetch('http://localhost:3001/api/auth/register', { 
                 method: 'POST',
@@ -20,6 +19,7 @@ const RegisterPage = () => {
             });
             const data = await response.json();
             if (response.ok) {
+                // Setelah registrasi berhasil, Anda bisa mengarahkan user ke halaman login
                 setMessage('Registrasi Berhasil! Silakan Login.');
             } else {
                 setMessage(`Registrasi Gagal: ${data.message}`);
@@ -29,9 +29,8 @@ const RegisterPage = () => {
         }
     };
 
-    // --- STYLING BARU ---
-    const primaryColor = '#800020'; // Burgundy
-    const secondaryColor = '#C8AE7D'; // Gold/Tan
+    // --- STYLING BARU --- (Sama seperti sebelumnya)
+    const primaryColor = '#800020'; 
     const bgColor = '#F5F5DC'; 
     
     const containerStyle = {
@@ -65,7 +64,7 @@ const RegisterPage = () => {
         borderRadius: '8px',
         boxSizing: 'border-box',
         fontSize: '16px',
-        appearance: 'none', // Untuk styling select box
+        appearance: 'none',
     };
 
     const buttonStyle = {
@@ -93,7 +92,6 @@ const RegisterPage = () => {
                 <p style={{ color: '#555', marginBottom: '35px' }}>Daftar untuk mengakses sistem informasi akademik</p>
                 
                 <form onSubmit={handleSubmit}>
-                    {/* Nama, Email, Password sama seperti sebelumnya, hanya ganti style */}
                     <div style={inputGroupStyle}>
                         <label style={{ display: 'block', fontWeight: '600', marginBottom: '5px', color: '#333' }}>Nama Lengkap</label>
                         <input type="text" value={nama} onChange={(e) => setNama(e.target.value)} style={inputStyle} placeholder="Nama sesuai KTP/NIM" required />
@@ -120,7 +118,8 @@ const RegisterPage = () => {
 
                 <p style={{ marginTop: '30px', color: '#555' }}>
                     Sudah punya akun? 
-                    <a href="/login" style={{ color: primaryColor, textDecoration: 'none', fontWeight: 'bold' }}> Login disini</a>
+                    {/* ⬅️ PERBAIKAN: Mengganti <a> dengan <Link> */}
+                    <Link to="/login" style={{ color: primaryColor, textDecoration: 'none', fontWeight: 'bold' }}> Login disini</Link>
                 </p>
                 <p style={{ color: message.includes('Gagal') ? '#D22B2B' : primaryColor, marginTop: '15px', fontWeight: '600' }}>{message}</p>
             </div>

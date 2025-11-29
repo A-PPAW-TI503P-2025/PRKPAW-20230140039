@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // ✅ Ditambahkan
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
@@ -36,7 +37,7 @@ const LoginPage = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: `linear-gradient(135deg, ${bgColor} 0%, #E6E6FA 100%)`, // Gradien Cream-Lavender
+        background: `linear-gradient(135deg, ${bgColor} 0%, #E6E6FA 100%)`,
     };
 
     const formBoxStyle = {
@@ -63,7 +64,6 @@ const LoginPage = () => {
         boxSizing: 'border-box',
         fontSize: '16px',
         transition: 'border-color 0.3s',
-        // Tambahkan :focus di CSS global untuk aksen secondaryColor
     };
 
     const buttonStyle = {
@@ -117,7 +117,8 @@ const LoginPage = () => {
 
                 <p style={{ marginTop: '30px', color: '#555' }}>
                     Belum punya akun? 
-                    <a href="/register" style={{ color: primaryColor, textDecoration: 'none', fontWeight: 'bold' }}> Daftar disini</a>
+                    {/* ✅ PERBAIKAN: Mengganti <a> dengan <Link> */}
+                    <Link to="/register" style={{ color: primaryColor, textDecoration: 'none', fontWeight: 'bold' }}> Daftar disini</Link>
                 </p>
                 <p style={{ color: message.includes('Gagal') ? '#D22B2B' : primaryColor, marginTop: '15px', fontWeight: '600' }}>{message}</p>
             </div>

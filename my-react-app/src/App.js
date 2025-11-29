@@ -1,40 +1,44 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; 
+// Hapus 'Link' dari import karena sudah ada di Navbar.js
+
+// Import Halaman Utama
 import LoginPage from './LoginPage';
 import RegisterPage from './RegisterPage';
 import DashboardPage from './DashboardPage';
 
-const App = () => {
-    const navStyle = {
-        backgroundColor: '#343a40', // Dark background
-        padding: '15px',
-        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-        display: 'flex',
-    };
+// Import Component Baru
+import Navbar from './components/Navbar';           // <-- WAJIB IMPORT
+import AttendancePage from './components/PresensiPage'; // <-- WAJIB IMPORT
+import ReportPage from './components/ReportPage';     // <-- WAJIB IMPORT
 
-    const linkStyle = {
-        color: 'white',
-        textDecoration: 'none',
-        margin: '0 15px',
-        fontWeight: 'bold',
-        transition: 'color 0.3s',
-    };
+const App = () => {
+    // Hapus variabel navStyle dan linkStyle yang lama
 
     return (
         <Router>
-            <nav style={navStyle}>
-                <Link to="/" style={{...linkStyle, color: '#ffc107'}}>HOME</Link>
-                <Link to="/login" style={linkStyle}>Login</Link>
-                <Link to="/register" style={linkStyle}>Register</Link>
-                <Link to="/dashboard" style={linkStyle}>Dashboard</Link>
-            </nav>
             
-            <div>
+            {/* ⬅️ INI ADALAH TEMPAT BARU UNTUK NAVIGASI */}
+            {/* Navbar diletakkan di SINI: Di dalam Router, di luar Routes.    */}
+            <Navbar /> 
+            
+            <div className="content-area">
                 <Routes>
-                    <Route path="/" element={<LoginPage />} /> 
+                    {/* Route Default: Biasanya diarahkan ke Dashboard/Login */}
+                    <Route path="/" element={<DashboardPage />} />
+                    
+                    {/* Routes Autentikasi */}
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/register" element={<RegisterPage />} />
+                    
+                    {/* Routes Aplikasi Utama */}
                     <Route path="/dashboard" element={<DashboardPage />} />
+                    
+                    {/* Route untuk Presensi (Check-In & Check-Out) */}
+                    <Route path="/presensi" element={<AttendancePage />} /> 
+
+                    {/* Route untuk Laporan (Khusus Admin) */}
+                    <Route path="/reports" element={<ReportPage />} /> 
                 </Routes>
             </div>
         </Router>
