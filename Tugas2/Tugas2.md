@@ -1,7 +1,7 @@
 # Tugas 2
 
 1. Tampilan Endpoint Create Book (GET ALL)
-![Tampilan Endpoint Create](Pict/hasilget.png)
+![Tampilan Endpoint Create](![alt text](image.png))
 
 2. Tampilan Endpoint Create Book (GET BY ID)
 ![Tampilan Endpoint Create](Pict/GetID.png)
