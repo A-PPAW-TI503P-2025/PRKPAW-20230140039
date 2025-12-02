@@ -1,12 +1,11 @@
-Database table Use
-![alt text](Database.png)
-Request POST /login (login sebagai "mahasiswa" dan mendapatkan token).
+1. Request POST /register (untuk membuat user "mahasiswa")
+![alt text](image-2.png)
 
-![alt text](<../Tugas5/SS/Screenshot 2025-11-21 194933.png>)
-
-
-![alt text](<Screenshot 2025-11-21 194144.png>)
-
-![alt text](<Screenshot 2025-11-21 194349.png>)
-
+2. Request POST /register (untuk membuat user "admin").
 ![alt text](<Screenshot 2025-11-21 194805.png>)
+
+3.	Request POST /login (login sebagai "mahasiswa" dan mendapatkan token).
+![alt text](image-1.png)
+
+4. Database table user
+![alt text](image.png)
