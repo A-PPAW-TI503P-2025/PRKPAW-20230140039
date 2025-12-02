@@ -1,5 +1,8 @@
-1. ![alt text](<Screenshot 2025-11-21 220227.png>)
+1. •	Login Page
+![alt text](image-1.png)
 
-2.![alt text](image.png)
+2. •	Register Page
+![alt text](image-2.png)
 
-3.![alt text](image.png)
+3. •	Dashboard Page
+![alt text](image.png)
